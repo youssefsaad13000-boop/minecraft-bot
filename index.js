@@ -4,12 +4,12 @@ const mineflayer = require('mineflayer');
 const bot = mineflayer.createBot({
   host: process.env.HOST,          // هيقرأ من .env
   port: Number(process.env.PORT),  // هيقرأ من .env
-  username: 'MyBot'                // غيّر الاسم زي ما تحب
+  username: 'Blocky'                // غيّر الاسم زي ما تحب
 });
 
 bot.once('login', () => {
   console.log('✅ Logged in');
-  bot.chat('Hello from my bot!');
+  bot.chat('My name is Blocky');
 });
 
 bot.on('chat', (username, message) => {
