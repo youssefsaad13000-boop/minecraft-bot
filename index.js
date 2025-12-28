@@ -2,9 +2,10 @@ require('dotenv').config();
 const mineflayer = require('mineflayer');
 
 const bot = mineflayer.createBot({
-  host: Teibacraft1234.aternos.me,          // هيقرأ من .env
-  port: 24226,  // هيقرأ من .env
-  username: 'Blocky'                // غيّر الاسم زي ما تحب
+  host: process.env.HOST,
+  port: Number(process.env.PORT),
+  username: 'Blocky',
+  version: '1.21.11' // غيّر حسب نسخة السيرفر على Aternos
 });
 
 bot.once('login', () => {
