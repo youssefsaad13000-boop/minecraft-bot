@@ -5,7 +5,7 @@ function createBot() {
     host: 'Teibaceaft123.aternos.me',
     port: 60036,
     username: 'Blocky', // اسم البوت
-    version: '1.21.1'
+    version: '1.21.11'
   })
 
   bot.on('spawn', () => {
