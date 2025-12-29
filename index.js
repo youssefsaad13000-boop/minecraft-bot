@@ -1,22 +1,38 @@
-require('dotenv').config();
-const mineflayer = require('mineflayer');
+const mineflayer = require('mineflayer')
 
-const bot = mineflayer.createBot({
-  host: process.env.HOST,
-  port: Number(process.env.PORT),
-  username: 'Blocky',
-  version: '1.21.11' // غيّر حسب نسخة السيرفر على Aternos
-});
+function createBot() {
+  const bot = mineflayer.createBot({
+    host: 'Teibaceaft123.aternos.me',
+    port: 60036,
+    username: 'Blocky', // اسم البوت
+    version: '1.21.1'
+  })
 
-bot.once('login', () => {
-  console.log('✅ Logged in');
-  bot.chat('My name is Blocky');
-});
+  bot.on('spawn', () => {
+    console.log('Bot joined the server!')
 
-bot.on('chat', (username, message) => {
-  if (username === bot.username) return;
-  if (message === '!ping') bot.chat('pong');
-});
+    // Anti-AFK حركة بسيطة كل 60 ثانية
+    setInterval(() => {
+      bot.setControlState('jump', true)
+      setTimeout(() => bot.setControlState('jump', false), 500)
+    }, 60000)
+  })
 
-bot.on('error', (err) => console.error('❌ Error:', err));
-bot.on('end', () => console.log('🛑 Bot disconnected'));
+  // Auto Respawn
+  bot.on('death', () => {
+    console.log('Bot died, respawning...')
+    setTimeout(() => bot.respawn(), 3000)
+  })
+
+  // Auto Reconnect
+  bot.on('end', () => {
+    console.log('Bot disconnected, reconnecting...')
+    setTimeout(createBot, 5000)
+  })
+
+  bot.on('error', (err) => {
+    console.log('Error:', err)
+  })
+}
+
+createBot()
