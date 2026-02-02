@@ -2,8 +2,8 @@ const mineflayer = require('mineflayer')
 
 function createBot() {
   const bot = mineflayer.createBot({
-    host: 'teibacraft.playserver.pro',
-    port: 25048,
+    host: 'teibacraftt.falixsrv.me ',
+    port: 21153,
     username: 'Blocky', // اسم البوت
     version: '1.21.11'
   })
